@@ -23,6 +23,8 @@ function travel(dir, callback) {
 travel(rootPath, function (pathname) {
     let file = fs.readFileSync(pathname, {encoding: 'utf8'});
 
+    let flag = false;
+    
     // 每个文件都要执行所有规则
     rules.forEach(function (r) {
         if (!r.test.test(pathname)) return;
@@ -38,9 +40,14 @@ travel(rootPath, function (pathname) {
                 });
 
                 file = file.replace(rp.from, to);
+                flag = true;
             }
         })
     });
+
+    if (flag) {
+        console.log('替换文件', pathname);
+    }
 
     fs.writeFileSync(pathname, file);
 });
