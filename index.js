@@ -47,7 +47,6 @@ travel(rootPath, function (pathname) {
 
     if (flag) {
         console.log('替换文件', pathname);
+        fs.writeFileSync(pathname, file);
     }
-
-    fs.writeFileSync(pathname, file);
 });
