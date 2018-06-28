@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
+var fs = require('fs');
+var path = require('path');
 
-const isFunction = require('@jsmini/is').isFunction;
+var isFunction = require('@jsmini/is').isFunction;
 
-const travel = require('./util/util.js').travel;
+var travel = require('./util/util.js').travel;
 
 function run(cmd, config) {
     config.forEach(function (conf, index) {
         console.log('第' + index + '组配置：start');
 
-        const rootPath = path.resolve(conf.root);
-        const rules = conf.rules;
+        var rootPath = path.resolve(conf.root);
+        var rules = conf.rules;
 
         travel(rootPath, function (pathname) {
             let file = fs.readFileSync(pathname, {encoding: 'utf8'});

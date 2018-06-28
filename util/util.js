@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+var fs = require('fs');
+var path = require('path');
 
 function travel(dir, callback) {
     fs.readdirSync(dir).forEach(function (file) {

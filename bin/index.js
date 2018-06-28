@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const path = require('path');
+var path = require('path');
 var yargs = require('yargs');
 
 var cdkit = require('../index.js');
