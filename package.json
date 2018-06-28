@@ -18,7 +18,17 @@
     "type": "git",
     "url": "git+https://github.com/yanhaijing/cdkit.git"
   },
-  "author": "",
+  "author": {
+    "name": "yanhaijing",
+    "email": "yanhaijing@yeah.net",
+    "url": "http://yanhaijing.com"
+  },
+  "keywords": [
+    "code",
+    "tool",
+    "kit",
+    "helper",
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/yanhaijing/cdkit/issues"
