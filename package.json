@@ -1,0 +1,27 @@
+{
+  "name": "cdkit",
+  "version": "1.0.0",
+  "description": "code kit 代码助手",
+  "main": "index.js",
+  "bin": {
+    "cdkit": "./bin/index.js"
+  },
+  "dependencies": {
+    "@jsmini/is": "0.4.0",
+    "yargs": "11.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanhaijing/cdkit.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yanhaijing/cdkit/issues"
+  },
+  "homepage": "https://github.com/yanhaijing/cdkit#readme"
+}

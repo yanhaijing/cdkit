@@ -1,52 +1,61 @@
-const config = require('./config/temp-config.js');
-
+const fs = require('fs');
 const path = require('path');
 
-const fs = require('fs');
+const isFunction = require('@jsmini/is').isFunction;
 
-const rootPath = path.resolve(config.root);
+const travel = require('./util/util.js').travel;
 
-const rules = config.rules;
+function run(cmd, config) {
+    config.forEach(function (conf, index) {
+        console.log('第' + index + '组配置：start');
 
-function travel(dir, callback) {
-    fs.readdirSync(dir).forEach(function (file) {
-        var pathname = path.join(dir, file);
+        const rootPath = path.resolve(conf.root);
+        const rules = conf.rules;
 
-        if (fs.statSync(pathname).isDirectory()) {
-            travel(pathname, callback);
-        } else {
-            callback(pathname);
-        }
+        travel(rootPath, function (pathname) {
+            let file = fs.readFileSync(pathname, {encoding: 'utf8'});
+
+            let count = 0;
+            
+            // 每个文件都要执行所有规则
+            rules.forEach(function (r) {
+                if (!r.test.test(pathname)) return;
+
+                // 对文件内容进行替换
+                r.replace.forEach(function (rp) {
+                    let res;
+                    // 支持字符串和正则的替换
+                    while(res = file.match(rp.from)) {
+                        count += 1;
+
+                        if (cmd === 'find') {
+                            // 查找，需要替换，否则会死循环
+                            file = file.replace(rp.from, '');
+                        } else if (cmd === 'del') {
+                            file = file.replace(rp.from, '');
+                        } else {
+                            // 支持函数
+                            // 支持替换中的正则引用 $0 $1 $2
+                            let to = isFunction(rp.to) ? rp.to:  rp.to.replace(/\$(\d+)/g, function (match, p1) {
+                                return res[p1] || ''
+                            });
+
+                            file = file.replace(rp.from, to);
+                        }
+                    }
+                })
+            });
+
+            if (count) {
+                console.log('文件：', pathname, cmd + '次数：' + count);
+                if (cmd !== 'find') {
+                    fs.writeFileSync(pathname, file);
+                }
+            }
+        });
+        console.log('第' + index + '组配置：end');
+        console.log('########################');
     });
 }
 
-travel(rootPath, function (pathname) {
-    let file = fs.readFileSync(pathname, {encoding: 'utf8'});
-
-    let flag = false;
-    
-    // 每个文件都要执行所有规则
-    rules.forEach(function (r) {
-        if (!r.test.test(pathname)) return;
-
-        // 对文件内容进行替换
-        r.replace.forEach(function (rp) {
-            let res;
-            // 支持字符串和正则的替换
-            while(res = file.match(rp.from)) {
-                // 支持替换中的正则引用 $0 $1 $2
-                let to = rp.to.replace(/\$(\d+)/g, function (match, p1) {
-                    return res[p1] || ''
-                });
-
-                file = file.replace(rp.from, to);
-                flag = true;
-            }
-        })
-    });
-
-    if (flag) {
-        console.log('替换文件', pathname);
-        fs.writeFileSync(pathname, file);
-    }
-});
+exports.run = run;
