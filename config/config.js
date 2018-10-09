@@ -17,7 +17,9 @@ const config = [
         root: './demo',
         rules: [
             {
-                test: /.*\.css/,
+                test: function (path) {
+                    return path.indexOf('.css') > -1;
+                },
                 replace: [
                     {
                         from: 'aaa',

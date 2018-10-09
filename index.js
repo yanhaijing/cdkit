@@ -19,7 +19,12 @@ function run(cmd, config) {
             
             // 每个文件都要执行所有规则
             rules.forEach(function (r) {
-                if (!r.test.test(pathname)) return;
+                // r.test是函数或者正则
+                if (isFunction(r.test)) {
+                    if (!r.test(pathname)) return;
+                } else {
+                    if (!r.test.test(pathname)) return;
+                }
 
                 // 对文件内容进行替换
                 r.replace.forEach(function (rp) {
