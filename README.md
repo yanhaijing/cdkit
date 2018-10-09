@@ -99,3 +99,10 @@ const config = [
 
 module.exports = config;
 ```
+
+## 贡献者指南
+修改CHANGELOG.md，修改package.json和README.md中的版本号，然后发布版本
+
+```
+$ npm run release
+```
