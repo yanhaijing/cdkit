@@ -1,4 +1,4 @@
-# [cdkit](https://github.com/yanhaijing/cdkit) [![npm](https://img.shields.io/badge/npm-1.0.0-orange.svg)](https://www.npmjs.com/package/cdkit) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/cdkit/blob/master/LICENSE)
+# [cdkit](https://github.com/yanhaijing/cdkit) [![npm](https://img.shields.io/badge/npm-1.1.0-orange.svg)](https://www.npmjs.com/package/cdkit) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/cdkit/blob/master/LICENSE)
 
 code kit 代码助手，支持查找，删除，替换等功能，批量执行，可连续运行
 
