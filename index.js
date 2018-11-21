@@ -3,10 +3,20 @@ var path = require('path');
 
 var isFunction = require('@jsmini/is').isFunction;
 
+var extend = require('@jsmini/extend').extend;
+
 var travel = require('./util/util.js').travel;
+
+var defaultConfig = {
+    root: '',
+    excludePath: [],
+    rules: [],
+};
 
 function run(cmd, config) {
     config.forEach(function (conf, index) {
+        conf = extend({}, defaultConfig, conf);
+
         console.log('第' + index + '组配置：start');
 
         var rootPath = path.resolve(conf.root);
@@ -57,7 +67,7 @@ function run(cmd, config) {
                     fs.writeFileSync(pathname, file);
                 }
             }
-        });
+        }, conf.excludePath);
         console.log('第' + index + '组配置：end');
         console.log('########################');
     });

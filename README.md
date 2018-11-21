@@ -56,6 +56,7 @@ cdkit的配置规则比较复杂，所以需要通过一个js文件来配置，�
 
 - config 配置信息，可以包含多个配置对象
 - root 绝对路径，要进行操作的根目录
+- excludePath 排除的目录
 - rules 进行替换的规则，可以包含多个
 - test 正则，可以对文件进行过滤；也可是函数
 - from 查找，删除，替换的内容，字符串或正则
@@ -79,6 +80,13 @@ const config = [
     },
     {
         root: '/demo',
+        excludePath: [
+            'aaa',
+            /aaa/,
+            function (path) {
+                return path.indexOf('aaa') !== -1;
+            }
+        ],
         rules: [
             {
                 test: function (path) {

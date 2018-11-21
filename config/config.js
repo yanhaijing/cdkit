@@ -15,6 +15,12 @@ const config = [
     },
     {
         root: './demo',
+        excludePath: [
+            'aaa',
+            function (path) {
+                return false;
+            }
+        ],
         rules: [
             {
                 test: function (path) {
