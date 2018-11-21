@@ -1,6 +1,6 @@
 # [cdkit](https://github.com/yanhaijing/cdkit) [![npm](https://img.shields.io/badge/npm-1.1.0-orange.svg)](https://www.npmjs.com/package/cdkit) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/cdkit/blob/master/LICENSE)
 
-code kit 代码助手，支持查找，删除，替换等功能，批量执行，可连续运行
+code kit 代码助手，支持查找，删除，替换等功能，批量执行，可连续运行 
 
 ## 适合场景
 1. 想要查找代码中的指定内容，需要多次查找，规则复杂时
