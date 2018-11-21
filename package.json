@@ -1,6 +1,6 @@
 {
   "name": "cdkit",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "code kit 代码助手",
   "main": "index.js",
   "bin": {
