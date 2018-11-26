@@ -1,14 +1,12 @@
 {
   "name": "cdkit",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "code kit 代码助手",
   "main": "index.js",
   "bin": {
     "cdkit": "./bin/index.js"
   },
   "dependencies": {
-    "@jsmini/extend": "0.2.0",
-    "@jsmini/is": "0.4.0",
     "yargs": "11.0.0"
   },
   "devDependencies": {},

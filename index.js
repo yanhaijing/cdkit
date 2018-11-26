@@ -1,10 +1,6 @@
 var fs = require('fs');
 var path = require('path');
 
-var isFunction = require('@jsmini/is').isFunction;
-
-var extend = require('@jsmini/extend').extend;
-
 var travel = require('./util/util.js').travel;
 
 var defaultConfig = {
@@ -15,7 +11,7 @@ var defaultConfig = {
 
 function run(cmd, config) {
     config.forEach(function (conf, index) {
-        conf = extend({}, defaultConfig, conf);
+        conf = Object.assign({}, defaultConfig, conf);
 
         console.log('第' + index + '组配置：start');
 
@@ -30,7 +26,7 @@ function run(cmd, config) {
             // 每个文件都要执行所有规则
             rules.forEach(function (r) {
                 // r.test是函数或者正则
-                if (isFunction(r.test)) {
+                if (typeof r.test === 'function') {
                     if (!r.test(pathname)) return;
                 } else {
                     if (!r.test.test(pathname)) return;
@@ -51,7 +47,7 @@ function run(cmd, config) {
                         } else {
                             // 支持函数
                             // 支持替换中的正则引用 $0 $1 $2
-                            let to = isFunction(rp.to) ? rp.to:  rp.to.replace(/\$(\d+)/g, function (match, p1) {
+                            let to = typeof rp.to === 'function' ? rp.to:  rp.to.replace(/\$(\d+)/g, function (match, p1) {
                                 return res[p1] || ''
                             });
 
