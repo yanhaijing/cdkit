@@ -1,4 +1,4 @@
-# [cdkit](https://github.com/yanhaijing/cdkit) [![npm](https://img.shields.io/badge/npm-1.2.1-orange.svg)](https://www.npmjs.com/package/cdkit) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/cdkit/blob/master/LICENSE)
+# [cdkit](https://github.com/yanhaijing/cdkit) [![npm](https://img.shields.io/badge/npm-1.3.0-orange.svg)](https://www.npmjs.com/package/cdkit) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yanhaijing/cdkit/blob/master/LICENSE)
 
 code kit 代码助手，支持查找，删除，替换等功能，批量执行，可连续运行 
 
@@ -40,7 +40,7 @@ cdkit也支持作为接口调用
 $ npm install --save cdkit # 本地安装，适合api使用
 ```
 
-在js中可引用cdkit提供的接口
+在js中可引用cdkit提供的接口，返回值为匹配内容的信息，包括行列
 
 ```js
 var cdkit = require('cdkit');
